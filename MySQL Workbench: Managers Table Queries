@@ -1,0 +1,93 @@
+MySQL Workbench: Managers Table Queries
+
+Project Overview
+
+This project involves creating a Managers table in MySQL Workbench, inserting data, and executing various queries to retrieve and manipulate data.
+
+Database Setup and Table Creation
+
+Open MySQL Workbench and connect to your database.
+
+Run the following SQL command to create the Managers table:
+
+CREATE TABLE Managers (
+    Manager_Id INT PRIMARY KEY,
+    First_name VARCHAR(50),
+    Last_Name VARCHAR(50),
+    DOB DATE,
+    Age INT CHECK (Age >= 18),
+    Last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    Gender ENUM('Male', 'Female', 'Other'),
+    Department VARCHAR(100),
+    Salary DECIMAL(10,2) NOT NULL
+);
+
+Data Insertion
+
+Run the following command to insert 10 records into the Managers table:
+
+INSERT INTO Managers (Manager_Id, First_name, Last_Name, DOB, Age, Gender, Department, Salary)
+VALUES
+(1, 'John', 'Doe', '1980-05-15', 44, 'Male', 'Finance', 30000),
+(2, 'Jane', 'Smith', '1992-08-10', 32, 'Female', 'IT', 28000),
+(3, 'Robert', 'Brown', '1985-12-20', 39, 'Male', 'HR', 22000),
+(4, 'Emily', 'Davis', '1995-06-05', 29, 'Female', 'IT', 26000),
+(5, 'Michael', 'Johnson', '1978-04-12', 46, 'Male', 'Sales', 40000),
+(6, 'Sarah', 'Williams', '1990-11-30', 34, 'Female', 'Marketing', 25000),
+(7, 'David', 'Wilson', '1988-07-18', 36, 'Male', 'IT', 15000),
+(8, 'Aaliya', 'Khan', '1993-09-25', 31, 'Female', 'HR', 27000),
+(9, 'Kevin', 'Miller', '1982-03-14', 42, 'Male', 'Finance', 32000),
+(10, 'Sophia', 'Moore', '1987-01-22', 37, 'Female', 'IT', 29000);
+
+SQL Queries
+
+1. Retrieve Manager's Name and DOB for Manager_Id = 1
+
+SELECT First_name, Last_Name, DOB
+FROM Managers
+WHERE Manager_Id = 1;
+
+2. Display Annual Income of All Managers
+
+SELECT Manager_Id, First_name, Last_Name, (Salary * 12) AS Annual_Income
+FROM Managers;
+
+3. Display All Managers Except 'Aaliya'
+
+SELECT *
+FROM Managers
+WHERE First_name <> 'Aaliya';
+
+4. Display Managers in IT Department Earning More Than 25000
+
+SELECT *
+FROM Managers
+WHERE Department = 'IT' AND Salary > 25000;
+
+5. Display Managers Whose Salary is Between 10000 and 35000
+
+SELECT *
+FROM Managers
+WHERE Salary BETWEEN 10000 AND 35000;
+
+Execution Steps in MySQL Workbench
+
+Open MySQL Workbench and connect to your database.
+
+Copy and paste the CREATE TABLE query and execute it.
+
+Copy and paste the INSERT INTO query and execute it.
+
+Run each of the SQL queries to retrieve data as required.
+
+Expected Outcome
+
+A Managers table will be created with defined constraints.
+
+10 rows of sample data will be inserted.
+
+The queries will return expected results based on the conditions applied.
+
+Conclusion
+
+This project provides a fundamental understanding of SQL queries, constraints, and data retrieval operations in MySQL Workbench.
