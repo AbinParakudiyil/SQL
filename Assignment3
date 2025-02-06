@@ -1,0 +1,5 @@
+git clone https://github.com/AbinParakudiyil/sql.git
+cd sql
+git add .
+git commit -m "Added my file"
+git push origin main
