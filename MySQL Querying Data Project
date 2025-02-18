@@ -1,0 +1,53 @@
+# MySQL Querying Data Project
+
+This repository contains SQL scripts for creating and querying tables in MySQL Workbench. The project includes a **Country** table and a **Persons** table, with various SQL queries to manipulate and retrieve data.
+
+## 📌 Project Overview
+This project demonstrates the following:
+- Creating tables (`Country` and `Persons`)
+- Inserting sample data
+- Running SQL queries to filter, sort, and retrieve information
+
+## 🛠️ Setup Instructions
+Follow these steps to run the SQL scripts in **MySQL Workbench**:
+
+### 1️⃣ Create a Database (Optional)
+To avoid conflicts with existing tables, create and use a new database:
+```sql
+CREATE DATABASE Assignment4;
+USE Assignment4;
+
+2️⃣ Create Tables
+Run the following SQL script to create the tables:
+
+sql
+Copy
+Edit
+CREATE TABLE Country (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Country_name VARCHAR(100) NOT NULL,
+    Population INT NOT NULL,
+    Area INT NOT NULL
+);
+
+CREATE TABLE Persons (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Fname VARCHAR(50) NOT NULL,
+    Lname VARCHAR(50) NOT NULL,
+    Population INT NOT NULL,
+    Rating DECIMAL(3,1) NOT NULL,
+    Country_Id INT,
+    Country_name VARCHAR(100),
+    FOREIGN KEY (Country_Id) REFERENCES Country(Id)
+);
+3️⃣ Insert Sample Data
+Execute the provided SQL script to insert sample data into the tables.
+
+4️⃣ Run Queries
+The repository includes queries for:
+
+Retrieving distinct country names
+Using aliases for first and last names
+Filtering by ratings, country names, and population
+Handling NULL values in country names
+Using IN, NOT IN, and BETWEEN conditions
