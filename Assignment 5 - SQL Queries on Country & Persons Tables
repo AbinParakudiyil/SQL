@@ -1,0 +1,10 @@
+Assignment 5 - SQL Queries on Country & Persons Tables
+This project contains SQL scripts for performing various queries on the Country and Persons tables, including:
+
+Table Creation: Defining the structure of Country and Persons tables.
+Data Insertion: Populating tables with sample data.
+SQL Queries:
+Joins: INNER JOIN, LEFT JOIN, RIGHT JOIN
+UNION Operations: Distinct and duplicate country names
+Aggregation: Rounding ratings in the Persons table
+Filtering & Selection: Various WHERE and LIKE conditions
