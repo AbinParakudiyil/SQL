@@ -1,0 +1,116 @@
+# Sorting and Grouping Data - SQL Assignment
+
+## Database Setup
+
+Create a new database:
+```sql
+CREATE DATABASE Sorting_And_Grouping;
+USE Sorting_And_Grouping;
+```
+
+### Create Tables
+
+#### Country Table
+```sql
+CREATE TABLE Country (
+    Id INT PRIMARY KEY,
+    Country_name VARCHAR(100),
+    Population INT,
+    Area INT
+);
+```
+
+#### Persons Table
+```sql
+CREATE TABLE Persons (
+    Id INT PRIMARY KEY,
+    Fname VARCHAR(50),
+    Lname VARCHAR(50),
+    Population INT,
+    Rating DECIMAL(3,2),
+    Country_Id INT,
+    Country_name VARCHAR(100),
+    FOREIGN KEY (Country_Id) REFERENCES Country(Id)
+);
+```
+
+### Insert Data
+
+#### Insert into Country Table
+```sql
+INSERT INTO Country (Id, Country_name, Population, Area) VALUES
+(1, 'USA', 331000000, 9833517),
+(2, 'Canada', 37700000, 9984670),
+(3, 'India', 1393409038, 3287263),
+(4, 'France', 65273511, 551695),
+(5, 'Germany', 83783942, 357022),
+(6, 'UK', 67886011, 243610),
+(7, 'Australia', 25687041, 7692024),
+(8, 'Brazil', 212559417, 8515767),
+(9, 'Russia', 145912025, 17098242),
+(10, 'Japan', 126476461, 377975);
+```
+
+#### Insert into Persons Table
+```sql
+INSERT INTO Persons (Id, Fname, Lname, Population, Rating, Country_Id, Country_name) VALUES
+(1, 'John', 'Doe', 50000, 4.5, 1, 'USA'),
+(2, 'Jane', 'Smith', 70000, 3.8, 2, 'Canada'),
+(3, 'Rahul', 'Kumar', 100000, 4.2, 3, 'India'),
+(4, 'Pierre', 'Dupont', 60000, 4.1, 4, 'France'),
+(5, 'Hans', 'Muller', 55000, 3.9, 5, 'Germany'),
+(6, 'Emily', 'Brown', 45000, 4.7, 6, 'UK'),
+(7, 'Steve', 'Johnson', 65000, 3.6, 7, 'Australia'),
+(8, 'Carlos', 'Silva', 80000, 4.3, 8, 'Brazil'),
+(9, 'Ivan', 'Petrov', 90000, 3.5, 9, 'Russia'),
+(10, 'Kenji', 'Tanaka', 40000, 4.0, 10, 'Japan');
+```
+
+### SQL Queries
+
+1. **Print first three characters of Country_name**
+```sql
+SELECT LEFT(Country_name, 3) FROM Country;
+```
+
+2. **Concatenate first name and last name**
+```sql
+SELECT CONCAT(Fname, ' ', Lname) AS Full_Name FROM Persons;
+```
+
+3. **Count unique country names in Persons table**
+```sql
+SELECT COUNT(DISTINCT Country_name) FROM Persons;
+```
+
+4. **Find maximum population from Country table**
+```sql
+SELECT MAX(Population) FROM Country;
+```
+
+5. **Find minimum population from Persons table**
+```sql
+SELECT MIN(Population) FROM Persons;
+```
+
+6. **Insert rows with NULL Lname & count non-null Lname**
+```sql
+INSERT INTO Persons (Id, Fname, Lname, Population, Rating, Country_Id, Country_name) VALUES
+(11, 'Alice', NULL, 55000, 4.2, 2, 'Canada'),
+(12, 'Bob', NULL, 60000, 3.9, 5, 'Germany');
+SELECT COUNT(Lname) FROM Persons;
+```
+
+7. **Count rows in Persons table**
+```sql
+SELECT COUNT(*) FROM Persons;
+```
+
+8. **Show population of first 3 rows in Country table**
+```sql
+SELECT Population FROM Country LIMIT 3;
+```
+
+9. **Print 3 random rows from Country table**
+```sql
+SELECT * FROM Country
