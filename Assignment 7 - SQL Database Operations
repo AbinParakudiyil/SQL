@@ -1,0 +1,88 @@
+# Assignment 7 - SQL Database Operations
+
+## Description
+
+This project involves creating a MySQL database named `Assignment7`, where we perform operations like creating tables, inserting data, adding new columns, and using functions to manipulate data. The database contains information about countries and persons. The `Persons` table is updated by adding a new `DOB` column after the table is initially created.
+
+## Steps to Set Up the Database
+
+```sql
+-- Step 1: Create a New Database
+CREATE DATABASE IF NOT EXISTS Assignment7;
+USE Assignment7;
+
+-- Step 2: Create Country Table
+CREATE TABLE IF NOT EXISTS Country (
+    CountryID INT AUTO_INCREMENT PRIMARY KEY,
+    CountryName VARCHAR(255) NOT NULL
+);
+
+-- Step 3: Create Persons Table
+CREATE TABLE IF NOT EXISTS Persons (
+    PersonID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    CountryID INT,
+    FOREIGN KEY (CountryID) REFERENCES Country(CountryID)
+);
+
+-- Step 4: Insert Data into Country Table
+INSERT INTO Country (CountryName) 
+VALUES 
+('India'), 
+('United States'), 
+('Canada'), 
+('Germany'), 
+('Australia');
+
+-- Step 5: Insert Data into Persons Table
+INSERT INTO Persons (Name, CountryID) 
+VALUES 
+('John Doe', 1), 
+('Jane Smith', 2), 
+('Alice Johnson', 3), 
+('Bob Brown', 4), 
+('Charlie Davis', 5);
+
+-- Step 6: Add DOB Column to Persons Table
+ALTER TABLE Persons
+ADD DOB DATE;
+
+-- Step 7: Create CalculateAge Function
+DELIMITER $$
+
+CREATE FUNCTION CalculateAge (DOB DATE)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE Age INT;
+    SET Age = TIMESTAMPDIFF(YEAR, DOB, CURDATE()) - 
+              (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT(DOB, '%m%d'));
+    RETURN Age;
+END $$
+
+DELIMITER ;
+
+-- Step 8: Fetch Age of All Persons Using the CalculateAge Function
+SELECT PersonID, Name, CalculateAge(DOB) AS Age
+FROM Persons;
+
+-- Step 9: Additional Operations on Country Table
+-- Find the length of each country name
+SELECT CountryName, CHAR_LENGTH(CountryName) AS NameLength
+FROM Country;
+
+-- Extract the first three characters of each country's name
+SELECT CountryName, LEFT(CountryName, 3) AS FirstThreeChars
+FROM Country;
+
+-- Convert all country names to uppercase
+SELECT CountryName, UPPER(CountryName) AS UpperCaseName
+FROM Country;
+
+-- Convert all country names to lowercase
+SELECT CountryName, LOWER(CountryName) AS LowerCaseName
+FROM Country;
+
+-- Step 10: Clean Up
+DROP TABLE IF EXISTS Persons;
+DROP TABLE IF EXISTS Country;
