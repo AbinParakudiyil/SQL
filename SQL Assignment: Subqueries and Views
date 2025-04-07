@@ -1,0 +1,82 @@
+# SQL Assignment: Subqueries and Views
+
+This project demonstrates the use of subqueries and views using MySQL. It covers two primary databases:
+- `WorldData` (containing country and person data)
+- `Product` (containing customer data)
+
+---
+
+## 🧱 Database Structure
+
+### Database: `WorldData`
+
+#### 1. Table: `Country`
+| Column Name   | Data Type    | Description            |
+|---------------|--------------|------------------------|
+| country_id    | INT (PK)     | Unique country ID      |
+| country_name  | VARCHAR(100) | Name of the country    |
+| population    | INT          | Population count       |
+
+#### 2. Table: `Persons`
+| Column Name   | Data Type    | Description               |
+|---------------|--------------|---------------------------|
+| person_id     | INT (PK)     | Unique person ID          |
+| first_name    | VARCHAR(50)  | First name                |
+| last_name     | VARCHAR(50)  | Last name                 |
+| country_id    | INT (FK)     | Reference to Country      |
+| rating        | FLOAT        | Rating of the person      |
+
+---
+
+### Database: `Product`
+
+#### Table: `Customer`
+| Column Name  | Data Type     | Description              |
+|--------------|---------------|--------------------------|
+| Customer_Id  | INT (PK)      | Unique customer ID       |
+| First_name   | VARCHAR(50)   | First name               |
+| Last_name    | VARCHAR(50)   | Last name                |
+| Email        | VARCHAR(100)  | Email address            |
+| Phone_no     | VARCHAR(20)   | Contact number           |
+| Address      | VARCHAR(255)  | Address                  |
+| City         | VARCHAR(100)  | City                     |
+| State        | VARCHAR(50)   | State                    |
+| Zip_code     | VARCHAR(20)   | ZIP/postal code          |
+| Country      | VARCHAR(50)   | Country                  |
+
+---
+
+## 📊 SQL Tasks
+
+### For `WorldData` Database
+
+1. ✅ Count number of persons in each country  
+2. ✅ Count number of persons in each country sorted descending  
+3. ✅ Show average rating per country (only if > 3.0)  
+4. ✅ List countries with same person rating as USA (Subquery)  
+5. ✅ Select countries with population greater than the average of all countries
+
+---
+
+### For `Product` Database
+
+1. ✅ Create view `customer_info` with full name and email  
+2. ✅ Create view `US_Customers` showing only US customers  
+3. ✅ Create view `Customer_details` with full name, email, phone, and state  
+4. ✅ Update phone numbers for customers in California  
+5. ✅ Count customers in each state where count > 5  
+6. ✅ Return number of customers in each state from `Customer_details`  
+7. ✅ Display all columns from `Customer_details` sorted by state
+
+---
+
+## ⚙️ Setup & Execution
+
+1. Open MySQL Workbench or preferred SQL environment.
+2. Execute all commands in the provided SQL file (`sql_assignment.sql` or copy from this repo).
+3. Disable **safe update mode** for update queries if needed:
+
+```sql
+SET SQL_SAFE_UPDATES = 0;
+-- Run your UPDATE queries
+SET SQL_SAFE_UPDATES = 1;
